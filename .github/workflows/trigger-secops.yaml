@@ -29,7 +29,7 @@ jobs:
             ghcr.io/gitleaks/gitleaks:latest \
             detect --source=/repo --verbose --redact
 
-      - name: Trigger Secops Repository
+      - name: Trigger SecOps Repository
         env:
           SECOPS_TRIGGER_TOKEN: ${{ secrets.SECOPS_TRIGGER_TOKEN }}
         run: |
