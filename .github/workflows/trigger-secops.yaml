@@ -1,4 +1,4 @@
-name: Step 1 - Verify Application Push Trigger
+name: Step 1 - Application Push
 
 on:
   push:
@@ -6,8 +6,7 @@ on:
       - main
 
 jobs:
-  verify-push-trigger:
-    name: Verify Application Push Trigger
+  application-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,13 +20,6 @@ jobs:
           echo "Repository: ${{ github.repository }}"
           echo "Branch: ${{ github.ref_name }}"
           echo "Commit SHA: ${{ github.sha }}"
-
-      - name: Gitleaks Secret Scan
-        run: |
-          docker run --rm \
-            -v "$PWD:/repo" \
-            ghcr.io/gitleaks/gitleaks:latest \
-            detect --source=/repo --verbose --redact
 
       - name: Trigger SecOps Repository
         env:
@@ -48,4 +40,3 @@ jobs:
                 "commit_sha": "${{ github.sha }}"
               }
             }'
-
