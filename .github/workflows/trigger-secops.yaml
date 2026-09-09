@@ -1,4 +1,3 @@
-yaml
 name: Step 1 - Verify Application Push Trigger
 
 on:
