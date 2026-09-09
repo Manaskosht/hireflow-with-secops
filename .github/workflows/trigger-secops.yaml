@@ -1,4 +1,4 @@
-name: Step 1 - Application Push
+name: Step 1 - Verify Application Push Trigger
 
 on:
   push:
@@ -6,14 +6,11 @@ on:
       - main
 
 jobs:
-  application-push:
+  verify-push-trigger:
+    name: Verify Application Push Trigger
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
       - name: Confirmation
         run: |
           echo "Application repository push"
@@ -31,7 +28,7 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $SECOPS_TRIGGER_TOKEN" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/manaskosht/SecOps/dispatches \
+            https://api.github.com/repos/Manaskosht/SecOps/dispatches \
             -d '{
               "event_type": "application_push",
               "client_payload": {
